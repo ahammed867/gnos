@@ -2,9 +2,7 @@
 
 Everything is a file. Even your cloud. (Eventually)
 
-Show Image
-Show Image
-Show Image
+
 ⚠️ Current Status: Proof of Concept
 GNOS is currently a demonstration of what's possible, not a working product. Most operations are simulated to show the potential of the concept.
 🎯 The Vision
