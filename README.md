@@ -1,13 +1,21 @@
-🌐 GNOS - GlobalNamespace OS
+# 🌐 GNOS - GlobalNamespace OS
 
-Everything is a file. Even your cloud. (Eventually)
+> **Everything is a file. Even your cloud.** *(Eventually)*
 
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![Rust](https://img.shields.io/badge/Rust-1.70%2B-orange.svg)](https://rustlang.org)
+[![Status](https://img.shields.io/badge/Status-Early%20Prototype-red.svg)](#)
 
-⚠️ Current Status: Proof of Concept
-GNOS is currently a demonstration of what's possible, not a working product. Most operations are simulated to show the potential of the concept.
-🎯 The Vision
+## ⚠️ Current Status: Proof of Concept
+
+**GNOS is currently a demonstration of what's possible, not a working product.** Most operations are simulated to show the potential of the concept.
+
+## 🎯 The Vision
+
 Imagine if all your cloud infrastructure worked like this:
-bash# Deploy to cloud
+
+```bash
+# Deploy to cloud
 cp api.py /mnt/gnos/cloud/aws/lambda/functions/
 
 # Run AI inference
@@ -16,26 +24,30 @@ cat /mnt/gnos/proc/llama3
 
 # Call APIs
 echo '{"message": "Hello"}' > /mnt/gnos/net/http/api.example.com/webhook
-That's what we're building. A filesystem interface for all infrastructure.
-🔨 What Actually Works Right Now
-✅ Implemented
+```
 
-FUSE filesystem that mounts at /mnt/gnos
-Basic directory structure (/proc, /cloud, /net, /dev)
-Simulated AI responses when you write to /proc/llama3
-Security framework with capability tokens (partially working)
-Driver architecture ready for real implementations
+**That's what we're building.** A filesystem interface for all infrastructure.
 
-❌ Not Yet Implemented (But Simulated)
+## 🔨 What Actually Works Right Now
 
-Real AI model integration (returns fake responses)
-Actual cloud storage operations (S3, GCS, etc.)
-Real HTTP/API calls
-Database operations
-Any actual infrastructure integration
+### ✅ Implemented
+- **FUSE filesystem** that mounts at `/mnt/gnos`
+- **Basic directory structure** (`/proc`, `/cloud`, `/net`, `/dev`)
+- **Simulated AI responses** when you write to `/proc/llama3`
+- **Security framework** with capability tokens (partially working)
+- **Driver architecture** ready for real implementations
 
-📝 What You Can Actually Do Today
-bash# Mount GNOS
+### ❌ Not Yet Implemented (But Simulated)
+- Real AI model integration (returns fake responses)
+- Actual cloud storage operations (S3, GCS, etc.)
+- Real HTTP/API calls
+- Database operations
+- Any actual infrastructure integration
+
+### 📝 What You Can Actually Do Today
+
+```bash
+# Mount GNOS
 sudo ./target/release/gnos-mount mount -m /mnt/gnos -f
 
 # Create a capability token
@@ -49,9 +61,14 @@ cat /mnt/gnos/proc/llama3
 # Output: "GNOS AI Model: LLaMA3-7B (Simulated)..."
 
 # That's about it for now! 😅
-🤔 Why This Project Exists
+```
+
+## 🤔 Why This Project Exists
+
 Modern development requires juggling dozens of SDKs:
-javascript// The pain is real
+
+```javascript
+// The pain is real
 import AWS from 'aws-sdk';
 import { OpenAI } from 'openai';
 import { MongoClient } from 'mongodb';
@@ -61,13 +78,21 @@ import { MongoClient } from 'mongodb';
 const s3 = new AWS.S3({ credentials: {...} });
 const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY });
 // ... etc
-GNOS proposes a radical simplification: What if everything was just file I/O?
-🏗️ Architecture (What We're Building)
+```
+
+**GNOS proposes a radical simplification**: What if everything was just file I/O?
+
+## 🏗️ Architecture (What We're Building)
+
+```
 Your Code → File Operation → GNOS → Driver → Actual Service
           ↓                       ↓
     fs.writeFile()         (Currently returns
                            simulated data)
-The Dream Structure:
+```
+
+### The Dream Structure:
+```
 /mnt/gnos/
 ├── proc/          # AI Models (simulated)
 │   └── llama3     # Fake AI responses
@@ -78,8 +103,12 @@ The Dream Structure:
 │   └── http/      # Would make real HTTP calls
 └── dev/           # Devices (not implemented)
     └── sensors/   # Would read IoT sensors
-🚀 Try the Demo
-bash# Clone and build
+```
+
+## 🚀 Try the Demo
+
+```bash
+# Clone and build
 git clone https://github.com/ahammed867/gnos
 cd gnos
 cargo build --release
@@ -96,13 +125,25 @@ cat /mnt/gnos/proc/llama3
 # Run the demo scripts (they show simulated operations)
 ./examples/medical_workflow.sh
 ./examples/real_dev_workflow.sh
-📊 Honest Performance Numbers
-What We ClaimReality"AI inference in 2.8s"Fake response in ~100ms"S3 upload at 120MB/s"Not implemented"10x faster development"Theoretical - needs real drivers
-🛠️ Want to Make This Real?
+```
+
+## 📊 Honest Performance Numbers
+
+| What We Claim | Reality |
+|---------------|---------|
+| "AI inference in 2.8s" | Fake response in ~100ms |
+| "S3 upload at 120MB/s" | Not implemented |
+| "10x faster development" | Theoretical - needs real drivers |
+
+## 🛠️ Want to Make This Real?
+
 We need help implementing actual drivers:
-Priority 1: Make ONE Thing Work
+
+### Priority 1: Make ONE Thing Work
 Instead of simulating everything, we should pick one integration and make it real:
-rust// src/drivers/openai.rs - This doesn't exist yet!
+
+```rust
+// src/drivers/openai.rs - This doesn't exist yet!
 impl GnosDriver for OpenAiDriver {
     async fn write(&self, path: &Path, data: &[u8]) -> Result<()> {
         // Actually call OpenAI API
@@ -112,39 +153,48 @@ impl GnosDriver for OpenAiDriver {
         Ok(())
     }
 }
-How You Can Help
+```
 
-Pick a driver (OpenAI, S3, Postgres, etc.)
-Implement real API calls
-Test it works
-Submit a PR
+### How You Can Help
+1. **Pick a driver** (OpenAI, S3, Postgres, etc.)
+2. **Implement real API calls**
+3. **Test it works**
+4. **Submit a PR**
 
-🤝 Contributing
+## 🤝 Contributing
+
 This is a research project exploring a new paradigm. We welcome:
+- **Feedback** on the concept
+- **Real driver implementations**
+- **Use case ideas**
+- **Architecture improvements**
 
-Feedback on the concept
-Real driver implementations
-Use case ideas
-Architecture improvements
+## ❓ FAQ
 
-❓ FAQ
-Q: Is this production-ready?
+**Q: Is this production-ready?**  
 A: No! This is a proof-of-concept. Most features are simulated.
-Q: Why Rust?
+
+**Q: Why Rust?**  
 A: FUSE requires low-level control, and Rust provides safety without sacrificing performance.
-Q: Will this actually work for real infrastructure?
+
+**Q: Will this actually work for real infrastructure?**  
 A: That's what we're trying to find out! The concept is sound, but implementation has challenges.
-Q: What's the biggest challenge?
+
+**Q: What's the biggest challenge?**  
 A: Mapping stateful operations (websockets, transactions) to a stateless file interface.
-🎯 Next Steps
 
-Implement ONE real driver (probably OpenAI or S3)
-Measure actual performance with real API calls
-Solve error handling through the filesystem
-Build community around the concept
+## 🎯 Next Steps
 
-📜 License
+1. **Implement ONE real driver** (probably OpenAI or S3)
+2. **Measure actual performance** with real API calls
+3. **Solve error handling** through the filesystem
+4. **Build community** around the concept
+
+## 📜 License
+
 Apache 2.0 - This is open research. Take the ideas and run with them!
+
+---
 
 <p align="center">
   <b>⭐ Star if you think infrastructure should be simpler!</b><br>
