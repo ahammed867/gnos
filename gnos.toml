@@ -1,0 +1,20 @@
+[security]
+default_permissions = "r"
+max_token_lifetime = "24h"
+require_signatures = true
+
+[drivers.ai]
+enabled = true
+default_model = "llama3-7b"
+context_size = 4096
+temperature = 0.7
+
+[drivers.cloud]
+enabled = true
+
+[drivers.cloud.aws]
+region = "us-east-1"
+
+[drivers.http]
+enabled = true
+timeout_seconds = 30

@@ -1,0 +1,38 @@
+[package]
+name = "gnos"
+version = "0.1.0"
+edition = "2021"
+description = "GlobalNamespace OS - Revolutionary POSIX interface for all computing resources"
+license = "Apache-2.0"
+repository = "https://github.com/gnos-os/rust-core"
+
+[[bin]]
+name = "gnos-mount"
+path = "src/main.rs"
+
+[dependencies]
+tokio = { version = "1.37", features = ["full"] }
+futures = "0.3"
+fuser = "0.13"
+libc = "0.2"
+reqwest = { version = "0.12", features = ["json", "stream"] }
+aws-sdk-s3 = "1.0"
+aws-config = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+ring = "0.17"
+thiserror = "1.0"
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+uuid = { version = "1.0", features = ["v4"] }
+chrono = { version = "0.4", features = ["serde"] }
+clap = { version = "4.0", features = ["derive"] }
+dashmap = "5.0"
+async-trait = "0.1"
+url = "2.0"
+base64 = "0.22"
+
+[dev-dependencies]
+tempfile = "3.0"
